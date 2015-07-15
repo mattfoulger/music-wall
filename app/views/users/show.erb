@@ -1,0 +1,15 @@
+<h1>User profile for <%= @user.user_name %></h1>
+
+<p>
+  Email: <%= @user.email %>
+  ID: <%= @user.id %>
+</p>
+
+<h3>Upvoted tracks</h3>
+  <% @user.upvotes.each do |upvote| %>
+  <% track = upvote.track %>
+  <p><a href="../tracks/show/<%= track.id %>"><%= track.song_title %></a> by <%= track.author %></p>
+  <% end %>
+
+<hr/>
+<a href="/tracks">Back to All Tracks</a>

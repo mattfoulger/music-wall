@@ -1,0 +1,12 @@
+<h1><%= @track.song_title %></h1>
+
+<p>
+  Author: <%= @track.author %>
+</p>
+
+<p>
+  <% unless @track.url.empty? %><a href=<%= @track.url %>>&#9654; Listen now</a><% end %>
+</p>
+
+<hr/>
+<a href="/tracks">Back to All Tracks</a>

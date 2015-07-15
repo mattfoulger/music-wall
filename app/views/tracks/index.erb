@@ -1,10 +1,21 @@
  <h1>All Tracks</h1>
-<hr/>
 <a href="/tracks/new">Add a new track</a>
+<hr/>
 
 <% @tracks.each do |track| %>
   <div class="track">
-    <h3><%= track.song_title %></h3>
-    <%= track.author %> <% unless track.url.empty? %> | <a href=<%= track.url %>>Listen now</a><% end %>
+    <h3><%= track.song_title %> — <%= track.author %>
+      <small> 
+      <% unless track.url.empty? %> <a href=<%= track.url %>>&#9654; Listen now</a><% end %>
+      </small>
+    </h3>
+    <small>
+      submitted by <a href="users/show/<%=track.user_id%>"><%= track.user.user_name %></a>
+      at <a href="/tracks/show/<%= track.id %>"><%= track.created_at %></a>
+      | <a href="/tracks/upvote/<%= track.id %>">up</a> <a href="/tracks/downvote/<%= track.id %>">down</a>
+
+    </small>
+    
+
   </div>
 <% end %>

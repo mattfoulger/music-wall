@@ -1,0 +1,31 @@
+<h1>Create a New Account</h1>
+<hr/>
+
+<% if @user.errors.any? %>
+  <div>
+    <strong>Some issues with your account, please fix them:</strong>
+    <ul>
+      <% @user.errors.full_users.each do |user| %>
+        <li><%= user %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<form method="post" action="/users">
+  <div>
+    <label>Username:</label>
+    <input type="text" name="user_name" value="<%= @user.user_name %>">
+  </div>
+  <div>
+    <label>Email:</label>
+    <input type="text" name="email" value="<%= @user.email %>">
+  </div>
+  <div>
+    <label>Password:</label>
+    <input type="text" name="password" value="<%= @user.password %>">
+  </div>
+  <div>
+    <input type="submit" value="Submit" >
+  </div>
+</form>

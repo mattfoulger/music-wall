@@ -1,0 +1,12 @@
+<h1>All Users</h1>
+<a href="/users/new">Sign up</a>
+<hr/>
+
+<% @users.each do |user| %>
+  <div class="user">
+    <h3><%= user.user_name %></h3>
+    <p><a href="/users/show/<%= user.id %>">View profile</a>
+    | <%= user.upvotes_received %> upvotes received</p>
+    <p><small>Member since <%= user.created_at %></small></p>
+  </div>
+<% end %>
