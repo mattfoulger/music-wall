@@ -12,9 +12,25 @@ get '/login' do
   erb :login
 end
 
-get 'logout' do
+get '/logout' do
   session.clear
   redirect '/login'
+end
+
+post '/login' do
+  # binding.pry
+  @user = User.find_by(user_name: params[:user_name])
+  unless @user
+    erb :login 
+  end
+  if params[:user_name] == @user.user_name && params[:password] == @user.password 
+    session[:loggedin] = true
+    session[:user_name] = params[:user_name]
+    session[:user_id] = @user.id
+    redirect to('/tracks')
+  else
+    erb :login
+  end 
 end
 
 get '/tracks' do
@@ -31,7 +47,8 @@ post '/tracks' do
   @track = Track.new(
     song_title:   params[:song_title],
     author: params[:author],
-    url:  params[:url]
+    url:  params[:url],
+    user_id: settings[:user_id]
   )
   if @track.save
     redirect '/tracks'
@@ -43,6 +60,11 @@ end
 get '/tracks/show/:id' do
   @track = Track.find params[:id]
   erb :'tracks/show'
+end
+
+get '/tracks/upvote/:id' do
+  @track = Track.find params[:id]
+  erb :'tracks/upvote'
 end
 
 get '/users' do

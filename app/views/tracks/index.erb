@@ -12,7 +12,8 @@
     <small>
       submitted by <a href="users/show/<%=track.user_id%>"><%= track.user.user_name %></a>
       at <a href="/tracks/show/<%= track.id %>"><%= track.created_at %></a>
-      | <a href="/tracks/upvote/<%= track.id %>">up</a> <a href="/tracks/downvote/<%= track.id %>">down</a>
+      | Score: <%= track.upvotes.count %>
+      | <a href="/tracks/upvote/<%= track.id %>">upvote</a>
 
     </small>
     

@@ -15,9 +15,14 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascript/application.js"></script>
 
-  <title></title>
+  <title>Music Wall</title>
 </head>
 <body>
+  <% if session[:loggedin] %>
+    <p>Logged in as <%= session[:user_name] %>. <a href="/logout">Log out</a></p>
+  <% else %>
+    <p><a href="/login">Log in</a></p>
+  <% end %>
   <%= yield %>
 </body>
 </html>
